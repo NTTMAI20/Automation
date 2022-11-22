@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="auto_01" />
-        <module name="Tuan01" />
+        <module name="Tuan02" />
       </profile>
     </annotationProcessing>
   </component>
