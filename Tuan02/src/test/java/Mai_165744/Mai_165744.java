@@ -31,6 +31,7 @@ public class Mai_165744 {
     Actions actions;
     String projectPath = System.getProperty("user.dir");
     String osName = System.getProperty("os.name");
+
     @BeforeClass
     public void beforeClass() {
         if (osName.contains("Mac")) { // Mac
@@ -44,6 +45,7 @@ public class Mai_165744 {
         rand = new Random();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
+
     @Test
     public void TC01_DemoQA() {
         try {
@@ -85,7 +87,7 @@ public class Mai_165744 {
 
             driver.findElement(By.xpath("//label[normalize-space()='Music']")).click();
             sleepInSecond(3);
-            driver.findElement(By.xpath("//input[@id='uploadPicture']")).sendKeys("C:\\Users\\maitr\\OneDrive\\Tài liệu\\BHX\\img bug\\2.png");
+            driver.findElement(By.xpath("//input[@id='uploadPicture']")).sendKeys(System.getProperty("user.dir") + "\\src\\img\\imgHi.jpg");
             sleepInSecond(3);
             driver.findElement(By.xpath("//textarea[@id='currentAddress']")).sendKeys("123 HCM");
             sleepInSecond(3);
@@ -100,10 +102,13 @@ public class Mai_165744 {
             actions.moveToElement(stateCity).click().build().perform();
             actions.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER)).perform();
             sleepInSecond(5);
-        }catch (Exception ex){
+            // ((JavascriptExecutor)driver).executeScript("document.getElementById('submit').click()");
+            driver.findElement(By.id("submit")).click();
+        } catch (Exception ex) {
             System.out.println("Có thao tác không thực hiện được");
         }
     }
+
     @Test
     public void TC02_BHX() {
         try {
@@ -119,7 +124,7 @@ public class Mai_165744 {
             sleepInSecond(3);
             driver.findElement(By.cssSelector("div[class='ward-container sb-container boxprovince'] li:nth-child(1)")).click();
             sleepInSecond(3);
-          WebElement cate=  driver.findElement(By.xpath("//img[@alt='Thịt heo các loại']"));
+            WebElement cate = driver.findElement(By.xpath("//img[@alt='Thịt heo các loại']"));
             sleepInSecond(3);
             cate.click();
             driver.findElement(By.xpath("//a[@title='Ba rọi heo C.P khay 500g']")).click();
@@ -140,14 +145,14 @@ public class Mai_165744 {
             phone.sendKeys("0938727300");
             sleepInSecond(3);
             String valuePhone = phone.getAttribute("value");
-            if(valuePhone.equals("")){
+            if (valuePhone.equals("")) {
                 phone.sendKeys("0938727300");
             }
 
             driver.findElement(By.cssSelector("#ProfileItems_0_Address")).sendKeys("IT Test");
             sleepInSecond(3);
             String valueAddress = phone.getAttribute("value");
-            if(valueAddress.equals("")){
+            if (valueAddress.equals("")) {
                 phone.sendKeys("IT Test");
             }
 
@@ -165,13 +170,13 @@ public class Mai_165744 {
             driver.findElement(By.xpath("//a[contains(text(),'XÁC NHẬN ĐƠN HÀNG')]")).click();
             sleepInSecond(3);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Có thao tác không thực hiện được");
         }
 
     }
 
-  //  @Test
+    //  @Test
 //    public void TC_01_Default_Dropdown() {
 //        driver.get("https://demo.nopcommerce.com/");
 //
@@ -242,7 +247,7 @@ public class Mai_165744 {
 //        Assert.assertEquals(driver.findElement(By.cssSelector("input#Company")).getAttribute("value"), "White House");
 //    }
 
-//    @Test
+    //    @Test
 //    public void TC_02_Default_Dropdown() {
 //        sleepInSecond(5);
 //        driver.get("https://rode.com/en/support/where-to-buy");
