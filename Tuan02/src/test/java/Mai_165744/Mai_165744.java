@@ -31,8 +31,6 @@ public class Mai_165744 {
     Actions actions;
     String projectPath = System.getProperty("user.dir");
     String osName = System.getProperty("os.name");
-
-
     @BeforeClass
     public void beforeClass() {
         if (osName.contains("Mac")) { // Mac
@@ -46,65 +44,66 @@ public class Mai_165744 {
         rand = new Random();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
-
-
     @Test
     public void TC01_DemoQA() {
-        actions = new Actions(driver);
-        driver.get("https://demoqa.com/automation-practice-form");
-        driver.manage().window().maximize();
-        // xoa quang cao
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement adDeleteEl = driver.findElement(By.id("fixedban"));
-        js.executeScript("arguments[0].setAttribute('style', 'display:none')", adDeleteEl);
+        try {
+            actions = new Actions(driver);
+            driver.get("https://demoqa.com/automation-practice-form");
+            driver.manage().window().maximize();
+            // xoa quang cao
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            WebElement adDeleteEl = driver.findElement(By.id("fixedban"));
+            js.executeScript("arguments[0].setAttribute('style', 'display:none')", adDeleteEl);
 
-        driver.findElement(By.xpath("//input[@id='firstName']")).sendKeys("test");
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//input[@id='lastName']")).sendKeys("Nguyen");
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//input[@id='userEmail']")).sendKeys("abc@gmai.com");
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//label[contains(text(),'Male')]")).click();
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//input[@id='userNumber']")).sendKeys("0322254877");
-        sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='firstName']")).sendKeys("test");
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='lastName']")).sendKeys("Nguyen");
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='userEmail']")).sendKeys("abc@gmai.com");
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//label[contains(text(),'Male')]")).click();
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='userNumber']")).sendKeys("0322254877");
+            sleepInSecond(3);
 
-        driver.findElement(By.xpath("//input[@id='dateOfBirthInput']")).click();
-        select = new Select(driver.findElement(By.xpath("//select[@class='react-datepicker__year-select']")));
-        select.selectByVisibleText("2000");
-        select = new Select(driver.findElement(By.xpath("//select[@class='react-datepicker__month-select']")));
-        select.selectByVisibleText("April");
-        driver.findElement(By.xpath("//div[@aria-label='Choose Tuesday, April 11th, 2000']")).click();
-        sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='dateOfBirthInput']")).click();
+            select = new Select(driver.findElement(By.xpath("//select[@class='react-datepicker__year-select']")));
+            select.selectByVisibleText("2000");
+            select = new Select(driver.findElement(By.xpath("//select[@class='react-datepicker__month-select']")));
+            select.selectByVisibleText("April");
+            driver.findElement(By.xpath("//div[@aria-label='Choose Tuesday, April 11th, 2000']")).click();
+            sleepInSecond(3);
 
-        WebElement subTestEl = driver.findElement(By.xpath("//input[@id='subjectsInput']"));
-        subTestEl.sendKeys("Ma");
-        subTestEl.sendKeys(Keys.ARROW_DOWN);
-        subTestEl.sendKeys(Keys.ENTER);
-        sleepInSecond(3);
+            WebElement subTestEl = driver.findElement(By.xpath("//input[@id='subjectsInput']"));
+            subTestEl.sendKeys("Ma");
+            subTestEl.sendKeys(Keys.ARROW_DOWN);
+            subTestEl.sendKeys(Keys.ENTER);
+            sleepInSecond(3);
 
-        //Scroll xuống
-        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+            //Scroll xuống
+            actions.sendKeys(Keys.PAGE_DOWN).build().perform();
 
-        driver.findElement(By.xpath("//label[normalize-space()='Music']")).click();
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//input[@id='uploadPicture']")).sendKeys("C:\\Users\\maitr\\OneDrive\\Tài liệu\\BHX\\img bug\\2.png");
-        sleepInSecond(3);
-        driver.findElement(By.xpath("//textarea[@id='currentAddress']")).sendKeys("123 HCM");
-        sleepInSecond(3);
+            driver.findElement(By.xpath("//label[normalize-space()='Music']")).click();
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//input[@id='uploadPicture']")).sendKeys("C:\\Users\\maitr\\OneDrive\\Tài liệu\\BHX\\img bug\\2.png");
+            sleepInSecond(3);
+            driver.findElement(By.xpath("//textarea[@id='currentAddress']")).sendKeys("123 HCM");
+            sleepInSecond(3);
 
-        WebElement stateTestEl = driver.findElement(By.id("state"));
-        actions.sendKeys(Keys.PAGE_DOWN).build().perform();
-        sleepInSecond(2);
-        actions.moveToElement(stateTestEl).click().build().perform();
-        actions.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER)).perform();
+            WebElement stateTestEl = driver.findElement(By.id("state"));
+            actions.sendKeys(Keys.PAGE_DOWN).build().perform();
+            sleepInSecond(2);
+            actions.moveToElement(stateTestEl).click().build().perform();
+            actions.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER)).perform();
 
-        WebElement stateCity = driver.findElement(By.id("city"));
-        actions.moveToElement(stateCity).click().build().perform();
-        actions.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER)).perform();
-        sleepInSecond(5);
+            WebElement stateCity = driver.findElement(By.id("city"));
+            actions.moveToElement(stateCity).click().build().perform();
+            actions.sendKeys(Keys.chord(Keys.DOWN, Keys.ENTER)).perform();
+            sleepInSecond(5);
+        }catch (Exception ex){
+            System.out.println("Có thao tác không thực hiện được");
+        }
     }
-
     @Test
     public void TC02_BHX() {
         try {
@@ -120,8 +119,9 @@ public class Mai_165744 {
             sleepInSecond(3);
             driver.findElement(By.cssSelector("div[class='ward-container sb-container boxprovince'] li:nth-child(1)")).click();
             sleepInSecond(3);
-            driver.findElement(By.xpath("//img[@alt='Thịt heo các loại']")).click();
+          WebElement cate=  driver.findElement(By.xpath("//img[@alt='Thịt heo các loại']"));
             sleepInSecond(3);
+            cate.click();
             driver.findElement(By.xpath("//a[@title='Ba rọi heo C.P khay 500g']")).click();
             sleepInSecond(3);
             driver.findElement(By.xpath("//aside[@class='infosell infosell-normal']//a[2]//div[1]//i[1]")).click();
@@ -135,18 +135,24 @@ public class Mai_165744 {
             driver.findElement(By.xpath("//label[@for='ProfileItems_0_Gender0']")).click();
             sleepInSecond(3);
             driver.findElement(By.cssSelector("#ProfileItems_0_CustomerName")).sendKeys("Mai Nguyễn");
-            sleepInSecond(10);
+            sleepInSecond(3);
             WebElement phone = driver.findElement(By.xpath("//input[@id='ProfileItems_0_CustomerPhone']"));
             phone.sendKeys("0938727300");
-            sleepInSecond(6);
+            sleepInSecond(3);
+            String valuePhone = phone.getAttribute("value");
+            if(valuePhone.equals("")){
+                phone.sendKeys("0938727300");
+            }
 
             driver.findElement(By.cssSelector("#ProfileItems_0_Address")).sendKeys("IT Test");
             sleepInSecond(3);
-            //phone.sendKeys("0938727300");
+            String valueAddress = phone.getAttribute("value");
+            if(valueAddress.equals("")){
+                phone.sendKeys("IT Test");
+            }
 
             driver.findElement(By.xpath("//div[@class='loadMorePaymentType']")).click();
             sleepInSecond(3);
-            //phone.sendKeys("0938727300");
 
             List<WebElement> paymentList = driver.findElements(By.xpath("//div[@class='listpayment']"));
             for (WebElement element : paymentList) {
@@ -254,7 +260,6 @@ public class Mai_165744 {
 //            System.out.println(element.getText());
 //        }
 //    }
-
     @AfterClass
     public void afterClass() {
         driver.quit();
