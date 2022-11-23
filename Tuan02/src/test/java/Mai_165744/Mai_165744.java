@@ -149,11 +149,11 @@ public class Mai_165744 {
                 phone.sendKeys("0938727300");
             }
 
-            driver.findElement(By.cssSelector("#ProfileItems_0_Address")).sendKeys("IT Test");
+            WebElement address = driver.findElement(By.cssSelector("#ProfileItems_0_Address"));
             sleepInSecond(3);
-            String valueAddress = phone.getAttribute("value");
+            String valueAddress = address.getAttribute("value");
             if (valueAddress.equals("")) {
-                phone.sendKeys("IT Test");
+                address.sendKeys("IT Test");
             }
 
             driver.findElement(By.xpath("//div[@class='loadMorePaymentType']")).click();
